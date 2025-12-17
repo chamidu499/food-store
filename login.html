@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html>
+    <head>
+    <title>FOOD STORE</title>
+    <link rel="stylesheet" href="css/loginstyle.css">
+    </head>
+    <body>
+
+        <h1>FLAVORO</h1>
+        <nav class="FOOD STORE nav" aria-label="Main navigation">
+            <div>
+                <a href="home.html">HOME</a>
+                <a href="srilankafood.html">SRI LANKA FOOD</a>
+                <a href="koreanfood.html">KOREAN FOOD</a>
+                <a href="japanfood.html">JAPAN FOOD</a>
+                <a href="indianfood.html">INDIAN FOOD</a>
+                <a href="chinees.html">CHINEES FOOD</a>
+                <a href="dessert.html">DESSERT</a>
+                <a href="contactus.html">CONTACT US</a>
+                <a href="about.html">ABOUT US</a>
+                <a href="cart.html" id="cartLink">ORDER NOW <span id="cartCount" class="cart-count">0</span></a>
+                <a href="login.html">LOGIN</a>
+            </div>
+        </nav>
+        
+        <div class="login-box">
+    <h2>Login</h2>
+
+    <p id="error" class="error-message"></p>
+
+    <form onsubmit="return checkLogin()">
+        <label>User Name</label>
+        <input type="text" id="username" placeholder="Enter username">
+
+        <label>Password</label>
+        <input type="password" id="password" placeholder="Enter password">
+
+        <button type="submit">Login</button>
+    </form>
+</div>
+
+<div id="popup" class="popup"></div>
+
+
+<script>
+function addToCart(name, price) {
+    let cart = JSON.parse(localStorage.getItem("cart")) || [];
+    cart.push({item: name, price: price});
+    localStorage.setItem("cart", JSON.stringify(cart));
+
+    showPopup("✔ " + name + " added to cart!");
+}
+
+function showPopup(message) {
+    let popup = document.getElementById("popup");
+    popup.innerText = message;
+    popup.classList.add("show");
+
+  
+    setTimeout(() => {
+        popup.classList.remove("show");
+    }, 2000);
+}
+
+
+function updateCartCount() {
+    let cart = JSON.parse(localStorage.getItem("cart")) || [];
+    document.getElementById("cartCount").innerText = cart.length;
+}
+
+function addToCart(name, price) {
+    let cart = JSON.parse(localStorage.getItem("cart")) || [];
+    cart.push({item: name, price: price});
+    localStorage.setItem("cart", JSON.stringify(cart));
+
+    showPopup("✔ " + name + " added to cart!");
+    updateCartCount();
+}
+
+
+function showPopup(message) {
+    let popup = document.getElementById("popup");
+    popup.innerText = message;
+    popup.classList.add("show");
+
+    setTimeout(() => {
+        popup.classList.remove("show");
+    }, 2000);
+}
+
+
+updateCartCount();
+
+function checkLogin() {
+    let user = document.getElementById("username").value;
+    let pass = document.getElementById("password").value;
+
+    if (user === "Admin" && pass === "1234") {
+        window.location.href = "srilankafood.html";
+        return false;
+    } else {
+        document.getElementById("error").innerHTML = "❌ Incorrect Username or Password!";
+        return false;
+    }
+}
+</script>
+
+</head>
+
+<footer class="footer">
+    <div class="footer-container">
+
+        <div class="footer-section">
+            <h3>Flavoro</h3>
+            <p>Taste the Best that Surprise you.</p>
+        </div>
+
+        <div class="footer-section">
+            <h3>Quick Links</h3>
+            <ul>
+                <li><a href="home.html">Home</a></li>
+                <li><a href="srilankafood.html">Sri Lankan Food</a></li>
+                <li><a href="aboutus.html">About Us</a></li>
+                <li><a href="contactus.html">Contact Us</a></li>
+            </ul>
+        </div>
+
+        <div class="footer-section">
+            <h3>Contact</h3>
+            <p>📞 074-0375225</p>
+            <p>📧 flavorfood@gmail.com</p>
+            <p>🏬 Kegalle, Sri Lanka</p>
+        </div>
+
+    </div>
+
+    <p class="copyright">© 2025 Food Store | All Rights Reserved</p>
+</footer>
+
+   </html>
